@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:BusinessExpenseTracker.Models"
+             x:Class="BusinessExpenseTracker.Views.MainPage"
+             Title="Бізнес-витрати">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="Трекер бізнес-витрат" FontSize="26" FontAttributes="Bold" />
+            <Label Text="Лабораторна №3 — SQLite та Repository" FontSize="13" />
+            <Entry Placeholder="Назва витрати" Text="{Binding ExpenseName}" />
+            <Entry Placeholder="Сума" Keyboard="Numeric" Text="{Binding Amount}" />
+            <Entry Placeholder="Категорія" Text="{Binding Category}" />
+            <Button Text="Додати витрату" Command="{Binding AddExpenseCommand}" />
+            <Label Text="Список витрат" FontSize="20" FontAttributes="Bold" Margin="0,12,0,0" />
+            <Label Text="Натисніть на витрату, щоб відкрити деталі" FontSize="12" />
+            <CollectionView ItemsSource="{Binding Expenses}"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedExpense}"
+                            SelectionChangedCommand="{Binding OpenExpenseCommand}"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
+                            EmptyView="Витрат поки немає">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Expense">
+                        <Grid Padding="10" ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                            <Label Text="{Binding Name}" FontAttributes="Bold" />
+                            <Label Grid.Row="1" Text="{Binding Category}" FontSize="12" />
+                            <Label Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Center" Text="{Binding Amount, StringFormat='{0:F2} грн'}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

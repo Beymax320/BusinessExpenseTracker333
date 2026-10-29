@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BusinessExpenseTracker.Views.ExpenseDetailPage"
+             Title="Деталі витрати">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+            <Label Text="Деталі / редагування витрати" FontSize="24" FontAttributes="Bold" />
+            <Label Text="Ідентифікатор об'єкта передано через Shell query-параметр" FontSize="12" />
+            <Label Text="Назва" FontAttributes="Bold" />
+            <Entry Text="{Binding Name}" />
+            <Label Text="Сума" FontAttributes="Bold" />
+            <Entry Text="{Binding Amount}" Keyboard="Numeric" />
+            <Label Text="Категорія" FontAttributes="Bold" />
+            <Entry Text="{Binding Category}" />
+            <Label Text="Дата" FontAttributes="Bold" />
+            <Label Text="{Binding DateText}" />
+            <Button Text="Зберегти зміни" Command="{Binding SaveCommand}" />
+            <Button Text="Видалити витрату" BackgroundColor="DarkRed" TextColor="White" Command="{Binding DeleteCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
